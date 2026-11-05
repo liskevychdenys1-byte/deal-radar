@@ -17,21 +17,21 @@ books = []
 print(f"Знайдено книжок: {len(cards)}")
 
 for number, card in enumerate(cards, 1):
-    # Назва
+
     title = card.h3.a["title"].strip()
 
-    # Ціна: перетворюємо на число
+
     price_text = card.select_one("p.price_color").get_text()
     price = float(price_text.replace("£", "").replace("Â", "").strip())
 
-    # Рейтинг
+
     rating_word = card.select_one("p.star-rating")["class"][1]
     rating = RATINGS[rating_word]
 
-    # Наявність
+
     availability = card.select_one("p.instock").get_text(strip=True)
 
-    # Зберігаємо дані книжки
+
     books.append({
         "title": title,
         "price": price,
@@ -46,7 +46,7 @@ for number, card in enumerate(cards, 1):
         f"{availability}"
     )
 
-# Сортування за ціною
+
 cheapest_books = sorted(books, key=lambda book: book["price"])
 
 print("\n===== 5 НАЙДЕШЕВШИХ КНИЖОК =====")
@@ -59,7 +59,7 @@ for book in cheapest_books[:5]:
         f"{book['availability']}"
     )
 
-# Кількість книжок із рейтингом 5
+
 five_star_count = sum(1 for book in books if book["rating"] == 5)
 
 print(f"\nКількість книжок із рейтингом 5: {five_star_count}")
