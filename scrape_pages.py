@@ -27,3 +27,4 @@ time.sleep(0.5) # не навантажуємо сайт
 
 cheapest = min(books, key=lambda b: b["price"])
 print("Найдешевша:", cheapest["title"], cheapest["price"])
+ 
