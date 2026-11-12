@@ -1,5 +1,5 @@
 class Product:
-    def __init__(self, title, price, source, rating=None, old_price=None, currency="$"):
+    def init(self, title, price, source, rating=None, old_price=None, currency="$"):
         self.title = title
         self.price = price
         self.source = source
@@ -24,9 +24,8 @@ class Product:
             "source": self.source,
         }
 
-    def __str__(self):
+    def str(self):
         text = f"{self.title[:34]:34} {self.currency}{self.price:>6.2f}"
         if self.discount():
             text += f"  -{self.discount()}%"
         return text
-

@@ -14,14 +14,14 @@ def clean_price(text):
 books = []
 for page in range(1, 4):
    response = requests.get(PAGE_URL.format(page))
-response.encoding = "utf-8"
-soup = BeautifulSoup(response.text, "html.parser")
+   response.encoding = "utf-8"
+   soup = BeautifulSoup(response.text, "html.parser")
 for card in soup.select("article.product_pod"):
     books.append({
-"title": card.h3.a["title"],
-"price": clean_price(card.select_one("p.price_color").get_text()),
-"rating": RATINGS[card.select_one("p.star-rating")["class"][1]],
-})
+    "title": card.h3.a["title"],
+    "price": clean_price(card.select_one("p.price_color").get_text()),
+    "rating": RATINGS[card.select_one("p.star-rating")["class"][1]],
+    })
 print(f"Сторінка {page}: усього книжок {len(books)}")
 time.sleep(0.5) # не навантажуємо сайт
 
